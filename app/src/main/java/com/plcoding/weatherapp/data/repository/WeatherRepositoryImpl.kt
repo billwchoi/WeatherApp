@@ -12,13 +12,19 @@ class WeatherRepositoryImpl @Inject constructor(
 ): WeatherRepository {
 
     override suspend fun getWeatherData(lat: Double, long: Double): Resource<WeatherInfo> {
+        println("1----------WeatherRepositoryImpl getWeatherData() WeatherApi: $api")
+
         return try {
             Resource.Success(
                 data = api.getWeatherData(
                     lat = lat,
                     long = long
-                ).toWeatherInfo()
-            )
+                ).toWeatherInfo().also {
+                    println("1----------WeatherRepository getWeatherData() WeatherInfo: $it")
+                }
+            ).also {
+                println("1----------WeatherRepository getWeatherData() Resource<WeatherInfo>: $it")
+            }
         } catch(e: Exception) {
             e.printStackTrace()
             Resource.Error(e.message ?: "An unknown error occurred.")

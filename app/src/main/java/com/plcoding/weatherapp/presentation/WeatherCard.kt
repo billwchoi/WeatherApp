@@ -25,18 +25,28 @@ fun WeatherCard(
     backgroundColor: Color,
     modifier: Modifier = Modifier
 ) {
+    // WeatherState WeatherInfo WeatherData
     state.weatherInfo?.currentWeatherData?.let { data ->
         Card(
             backgroundColor = backgroundColor,
             shape = RoundedCornerShape(10.dp),
             modifier = modifier.padding(16.dp)
         ) {
+            // Column 은 아래로
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                println("----------data:$data")
+                println("----------data.weatherType.iconRes:${data.weatherType.iconRes}")
+                println("----------data.temperatureCelsius:${data.temperatureCelsius}")
+                println("----------data.weatherType.weatherDesc:${data.weatherType.weatherDesc}")
+                println("----------data.pressure.roundToInt():${data.pressure.roundToInt()}")
+                println("----------data.humidity.roundToInt():${data.humidity.roundToInt()}")
+                println("----------data.windSpeed.roundToInt():${data.windSpeed.roundToInt()}")
+                // 오늘 시간
                 Text(
                     text = "Today ${
                         data.time.format(
@@ -47,24 +57,29 @@ fun WeatherCard(
                     color = Color.White
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+                // 날씨 이미지
                 Image(
                     painter = painterResource(id = data.weatherType.iconRes),
                     contentDescription = null,
                     modifier = Modifier.width(200.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+                // 온도
                 Text(
                     text = "${data.temperatureCelsius}°C",
                     fontSize = 50.sp,
                     color = Color.White
                 )
+                // 빈 줄
                 Spacer(modifier = Modifier.height(16.dp))
+                // Partly cloudy
                 Text(
                     text = data.weatherType.weatherDesc,
                     fontSize = 20.sp,
                     color = Color.White
                 )
                 Spacer(modifier = Modifier.height(32.dp))
+                // Row 는 옆으로
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceAround

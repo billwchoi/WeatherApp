@@ -23,8 +23,13 @@ object AppModule {
         return Retrofit.Builder()
             .baseUrl("https://api.open-meteo.com/")
             .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-            .create()
+            .build().also {
+                println("1------------------------------------------------------------------")
+                println("1----------AppModule provideWeatherApi() Retrofit baseUrl: ${it.baseUrl()}")
+            }
+            .create<WeatherApi>().also {
+                println("1----------AppModule provideWeatherApi() WeatherApi: $it")
+            }
     }
 
     @Provides

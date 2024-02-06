@@ -15,20 +15,27 @@ fun WeatherForecast(
     state: WeatherState,
     modifier: Modifier = Modifier
 ) {
+    println("----------WeatherState state:$state")
+    println("----------WeatherState state.weatherInfo?.weatherDataPerDay?.get(0):${state.weatherInfo?.weatherDataPerDay?.get(0)}")
     state.weatherInfo?.weatherDataPerDay?.get(0)?.let { data ->
+        // 아래로
         Column(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
         ) {
+            // 첫째 줄
             Text(
                 text = "Today",
                 fontSize = 20.sp,
                 color = Color.White
             )
             Spacer(modifier = Modifier.height(16.dp))
+            // 둘째
             LazyRow(content = {
                 items(data) { weatherData ->
+                    println("----------LazyRow weatherData:$weatherData")
+
                     HourlyWeatherDisplay(
                         weatherData = weatherData,
                         modifier = Modifier

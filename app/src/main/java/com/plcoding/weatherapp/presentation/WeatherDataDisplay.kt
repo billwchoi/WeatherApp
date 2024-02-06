@@ -24,20 +24,28 @@ fun WeatherDataDisplay(
     textStyle: TextStyle = TextStyle(),
     iconTint: Color = Color.White
 ) {
+    // Row 옆으로
     Row(
         modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically // 중간 정렬
+//        verticalAlignment = Alignment.Bottom // 바닥 정렬
+//        verticalAlignment = Alignment.Top // 위 정렬
     ) {
+        println("----------value:$value")
+        println("----------unit:$unit")
+        println("----------icon:$icon")
+
         Icon(
             imageVector = icon,
             contentDescription = null,
             tint = iconTint,
             modifier = Modifier.size(25.dp)
         )
+        // 빈 줄
         Spacer(modifier = Modifier.width(4.dp))
         Text(
             text = "$value$unit",
-            style = textStyle
+            style = textStyle // 기본 스타일
         )
     }
 }

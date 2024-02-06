@@ -22,15 +22,21 @@ fun HourlyWeatherDisplay(
     modifier: Modifier = Modifier,
     textColor: Color = Color.White
 ) {
+    println("----------HourlyWeatherDisplay weatherData:$weatherData")
+    println("----------HourlyWeatherDisplay weatherData.weatherType.iconRes:${weatherData.weatherType.iconRes}")
+    println("----------HourlyWeatherDisplay weatherData.temperatureCelsius:${weatherData.temperatureCelsius}")
+
+    // 리멤버 기억하기
     val formattedTime = remember(weatherData) {
         weatherData.time.format(
             DateTimeFormatter.ofPattern("HH:mm")
         )
     }
+    // 아래로
     Column(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween
+        horizontalAlignment = Alignment.CenterHorizontally, // 수평 정렬 = 가로 중앙 정렬
+        verticalArrangement = Arrangement.SpaceBetween // 수직 정렬 = 가운데 간격 두기
     ) {
         Text(
             text = formattedTime,
